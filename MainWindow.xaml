@@ -1,0 +1,21 @@
+﻿<Window x:Class="getimgWPFClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:getimgWPFClient"
+        mc:Ignorable="d"
+        Title="getimg WPF client" Height="1050" Width="1600">
+    <Grid x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="1044" />
+        </Grid.ColumnDefinitions>
+        <GridSplitter Grid.Column="1" Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Center"/>
+        <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="2" Margin="5,5,5,5">
+            <Image x:Name="mainImage"/>
+        </Border>
+    </Grid>
+    
+</Window>
