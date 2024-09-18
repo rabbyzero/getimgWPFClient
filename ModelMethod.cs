@@ -9,8 +9,8 @@ namespace getimgWPFClient
 {
     internal abstract class ModelMethod
     {
-        protected String methodLocation; // combined with client url and modelLocation to identify the method
-        protected Method httpMethod;
-        protected BodyParams bodyParams;
+        public String methodLocation; // combined with client url and modelLocation to identify the method
+        public Method httpMethod;
+        public BodyParams bodyParams;
     }
 }

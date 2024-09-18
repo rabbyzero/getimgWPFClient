@@ -8,6 +8,7 @@ namespace getimgWPFClient
 {
     internal abstract class ImageModel
     {
-        protected String modelLocation; // combined with client URL to identify the model        
+        protected String modelLocation; // combined with client URL to identify the model
+        public String ModelLocation { get => modelLocation; }
     }
 }
