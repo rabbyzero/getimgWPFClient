@@ -8,7 +8,7 @@ namespace getimgWPFClient
 {
     internal class FLUXSchnell:ImageModel
     {
-        FLUXSchnell()
+        public FLUXSchnell()
         {
             modelLocation = "v1/flux-schnell/";
         }

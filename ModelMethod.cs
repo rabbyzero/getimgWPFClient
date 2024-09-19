@@ -11,6 +11,5 @@ namespace getimgWPFClient
     {
         public String methodLocation; // combined with client url and modelLocation to identify the method
         public Method httpMethod;
-        public BodyParams bodyParams;
     }
 }

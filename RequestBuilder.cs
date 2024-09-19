@@ -8,11 +8,11 @@ using RestSharp;
 
 namespace getimgWPFClient
 {
-    internal class RequestBuilder<MODEL,METHOD,BODYPARAMS> where MODEL : ImageModel where METHOD : ModelMethod where BODYPARAMS : BodyParams
+    internal class RequestBuilder<MODEL,METHOD> where MODEL : ImageModel where METHOD : ModelMethod
     {
-        RestRequest request;
+        public RestRequest request;
 
-        RequestBuilder()
+        public RequestBuilder()
         {
             request = new RestRequest("v1/flux-schnell/text-to-image", Method.Post)
                 .AddHeader("accept","application/json")
@@ -20,12 +20,12 @@ namespace getimgWPFClient
                 .AddJsonBody("",false);
         }
 
-        RequestBuilder(MODEL model,METHOD method,String key,BODYPARAMS parameters)
+        public RequestBuilder(MODEL model,METHOD method,String key, BodyParams<FLUXSchnell, TextToImage<FLUXSchnell>> parameters)
         {
             request = new RestRequest(model.ModelLocation + method.methodLocation, method.httpMethod)
                 .AddHeader("accept", "application/json")
-                .AddHeader("authorization", "Bearer " + key)
-                .AddJsonBody("", false);
+                .AddHeader("authorization", "Bearer " + key);
+                
         }
     }
 }

@@ -16,7 +16,7 @@ namespace getimgWPFClient
             httpMethod = Method.Post;
         }
 
-        TextToImage(FLUXSchnell imageModel):this()
+        public TextToImage(FLUXSchnell imageModel):this()
         {
         }
 
