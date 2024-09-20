@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using RestSharp;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,7 +24,7 @@ namespace getimgWPFClient
 
         }
 
-        public void getImage_Click(object sender, RoutedEventArgs e)
+        public async void getImage_Click(object sender, RoutedEventArgs e)
         {
             FLUXSchnell model = new();
             TextToImage<FLUXSchnell> method = new(model);
@@ -35,9 +36,11 @@ namespace getimgWPFClient
             parameters.Output_format = "jpeg";
             parameters.Response_format = "url";
             parameters.Prompt = promptInputBox.Text;
-            RequestBuilder<ImageModel, ModelMethod> request = new(model, method, "key-1234567890 ", parameters);
+            RequestBuilder<ImageModel, ModelMethod> request = new(model, method, keyInputBox.Text, parameters);
             parameters.BuildJsonBody(request.request,method);
-
+            
+            var response = await restClient.client.PostAsync(request.request);
+            responsePreview.Text = response.Content;
         }
     }
 }

@@ -32,13 +32,13 @@ namespace getimgWPFClient
         public RestRequest BuildJsonBody(RestRequest r, TextToImage<FLUXSchnell> _)
         {
             r.AddJsonBody(new {
-                prompt=this.Prompt,
-                width=this.Width,
-                this.Height,
-                this.Steps,
-                this.Seed,
-                this.Output_format,
-                this.Response_format
+                prompt  =   this.Prompt,
+                width   =   this.Width,
+                height  =   this.Height,
+                steps   =   this.Steps,
+                seed    =   this.Seed,
+                output_format   =   this.Output_format,
+                response_format  =   this.Response_format
             });
             return r;
         }
