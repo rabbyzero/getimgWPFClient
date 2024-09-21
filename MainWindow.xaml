@@ -17,10 +17,10 @@
             <Image x:Name="mainImage"/>
         </Border>
         <TextBox x:Name="promptInputBox" Margin="30,30,30,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="200"/>
-        <TextBox x:Name="requestPreview" Margin="30,327,30,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="96"/>
-        <Button x:Name="getImage" Content="GET IMAGE" Click="getImage_Click" HorizontalAlignment="Right" Margin="361,260,30,0" VerticalAlignment="Top" Width="150" Height="30"/>
-        <TextBox x:Name="responsePreview" Margin="30,449,30,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="96"/>
+        <Button x:Name="getImageButton" Content="GET IMAGE" Click="getImageButton_Click" HorizontalAlignment="Right" Margin="361,260,30,0" VerticalAlignment="Top" Width="150" Height="30"/>
+        <TextBox x:Name="responsePreview" Margin="30,362,30,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="96"/>
         <TextBox x:Name="keyInputBox" Margin="30,260,0,0" TextWrapping="Wrap" Text="key" VerticalAlignment="Top" Height="30" Width="300" HorizontalAlignment="Left"/>
+        <TextBox x:Name="proxyInputBox" Margin="30,306,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="30" Width="300" HorizontalAlignment="Left"/>
     </Grid>
 
 </Window>

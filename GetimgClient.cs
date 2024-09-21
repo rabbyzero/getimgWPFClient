@@ -15,7 +15,7 @@ namespace getimgWPFClient
     {
         RestClientOptions options = new RestClientOptions("https://api.getimg.ai");
         public RestClient client;
-        WebProxy proxy;
+        WebProxy? proxy;
 
         public GetimgClient()
         {
@@ -24,10 +24,11 @@ namespace getimgWPFClient
             client = new RestClient(options, configureSerialization: s => s.UseSystemTextJson(new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull }));
         }
 
-        public GetimgClient(string url)
+        public GetimgClient(string proxyUrl)
         {
-            options = new RestClientOptions(url);
-            client = new RestClient(options);
+            proxy = new WebProxy(proxyUrl);
+            options = new RestClientOptions("https://api.getimg.ai") { Proxy = proxy };
+            client = new RestClient(options, configureSerialization: s=> s.UseSystemTextJson(new JsonSerializerOptions { DefaultIgnoreCondition= JsonIgnoreCondition.WhenWritingNull }));
         }
     }
 }
