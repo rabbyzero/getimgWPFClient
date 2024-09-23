@@ -16,11 +16,35 @@
         <Border BorderBrush="Gray" BorderThickness="1" Grid.Column="2" Margin="5,5,5,5">
             <Image x:Name="mainImage"/>
         </Border>
-        <TextBox x:Name="promptInputBox" Margin="30,30,30,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="200"/>
+        <TextBox x:Name="promptInputBox" Margin="30,30,30,0" TextWrapping="Wrap" Text="Response" VerticalAlignment="Top" Height="200"/>
         <Button x:Name="getImageButton" Content="GET IMAGE" Click="getImageButton_Click" HorizontalAlignment="Right" Margin="361,260,30,0" VerticalAlignment="Top" Width="150" Height="30"/>
-        <TextBox x:Name="responsePreview" Margin="30,362,30,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="96"/>
-        <TextBox x:Name="keyInputBox" Margin="30,260,0,0" TextWrapping="Wrap" Text="key" VerticalAlignment="Top" Height="30" Width="300" HorizontalAlignment="Left"/>
-        <TextBox x:Name="proxyInputBox" Margin="30,306,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="30" Width="300" HorizontalAlignment="Left"/>
+        <TextBox x:Name="responsePreview" Margin="30,362,30,0" TextWrapping="Wrap" Text="Response" VerticalAlignment="Top" Height="96" TextChanged="responsePreview_TextChanged"/>
+        <TextBox x:Name="keyInputBox" Margin="100,260,0,0" TextWrapping="Wrap" Text="key" VerticalAlignment="Top" Height="30" Width="220" HorizontalAlignment="Left"/>
+        <TextBox x:Name="proxyInputBox" Margin="100,307,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="30" Width="421" HorizontalAlignment="Left"/>
+        <Slider x:Name="widthSlider" HorizontalAlignment="Left" Margin="66,725,0,0" VerticalAlignment="Top" Width="120" Value="512" Minimum="256" Maximum="1024" SmallChange="1" TickFrequency="128" TickPlacement="TopLeft"/>
+        <Slider x:Name="heightSlider" HorizontalAlignment="Left" Margin="30,592,0,0" VerticalAlignment="Top" Orientation="Vertical" Height="120" Maximum="1024" Minimum="256" SmallChange="1" TickFrequency="128" TickPlacement="BottomRight" Value="512"/>
+        <TextBox x:Name="widthInputBox" HorizontalAlignment="Left" Margin="200,728,0,0" TextWrapping="Wrap" Text="{Binding Value, ElementName=widthSlider, Mode=TwoWay}" VerticalAlignment="Top" Width="50" TextAlignment="Center"/>
+        <TextBox x:Name="heightInputBox" HorizontalAlignment="Left" Margin="78,592,0,0" TextWrapping="Wrap" Text="{Binding Value, ElementName=heightSlider, Mode=TwoWay}" VerticalAlignment="Top" Width="48" TextAlignment="Center"/>
+        <Slider x:Name="stepsSlider" HorizontalAlignment="Left" Margin="276,619,0,0" VerticalAlignment="Top" Width="120" Minimum="1" Maximum="6" SmallChange="1" TickPlacement="TopLeft" Value="4"/>
+        <TextBox x:Name="stepsInputBox" HorizontalAlignment="Left" Margin="400,625,0,0" TextWrapping="Wrap" Text="{Binding Value, ElementName=stepsSlider, Mode=TwoWay}" VerticalAlignment="Top" Width="50" TextAlignment="Center"/>
+        <TextBox x:Name="seedInputBox" HorizontalAlignment="Left" Margin="276,677,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" TextAlignment="Center" Text="1"/>
+        <TextBox x:Name="imageUrlTextBox" Margin="30,0,30,0" TextWrapping="Wrap" Text="image URL" VerticalAlignment="Center" Height="96"/>
+        <Label Content="key:" HorizontalAlignment="Left" Margin="30,260,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="proxy:" HorizontalAlignment="Left" Margin="30,307,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="height" HorizontalAlignment="Left" Margin="141,588,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="width" HorizontalAlignment="Left" Margin="260,723,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="seed:" HorizontalAlignment="Left" Margin="200,673,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="steps" HorizontalAlignment="Left" Margin="461,621,0,0" VerticalAlignment="Top" Width="60"/>
+        <ComboBox x:Name="output_formatComboBox" HorizontalAlignment="Left" Margin="150,800,0,0" VerticalAlignment="Top" Width="60" Height="30">
+            <ComboBoxItem >jpeg</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">png</ComboBoxItem>
+        </ComboBox>
+        <Label Content="output format:" HorizontalAlignment="Left" Margin="30,800,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
+        <Label Content="response format:" HorizontalAlignment="Left" Margin="30,850,0,0" VerticalAlignment="Top" Width="120" Height="30"/>
+        <ComboBox x:Name="response_formatComboBox" HorizontalAlignment="Left" Margin="150,850,0,0" VerticalAlignment="Top" Width="60" Height="30">
+            <ComboBoxItem Content="b64"/>
+            <ComboBoxItem IsSelected="True" Content="url"/>
+        </ComboBox>
     </Grid>
 
 </Window>

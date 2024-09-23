@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+
 
 namespace getimgWPFClient
 {
@@ -38,17 +40,20 @@ namespace getimgWPFClient
                 restClient = directClient;
             }
             
+            var response_format = response_formatComboBox.Text;
+
             FLUXSchnell model = new();
             TextToImage<FLUXSchnell> method = new(model);
             BodyParams<FLUXSchnell, TextToImage<FLUXSchnell>> parameters = new()
             {
-                Width = 256,
-                Height = 256,
-                Steps = 1,
-                Seed = 1,
-                Output_format = "jpeg",
-                Response_format = "url",
-                Prompt = promptInputBox.Text
+                width = int.Parse(widthInputBox.Text),
+                height = int.Parse(heightInputBox.Text),
+                steps = int.Parse(stepsInputBox.Text),
+                seed = int.Parse(seedInputBox.Text),
+                output_format = output_formatComboBox.Text,
+                response_format = response_format,
+
+                prompt = promptInputBox.Text
             };
             RequestBuilder<ImageModel, ModelMethod> request = new(model, method, keyInputBox.Text, parameters);
             parameters.BuildJsonBody(request.request,method);
@@ -56,14 +61,33 @@ namespace getimgWPFClient
             var response = restClient.client.Post(request.request);
             
             responsePreview.Text = response.Content;
-            //{"cost":0.0000393216,"seed":1,"url":"https://api-images-getimg.b74c4cef8e39fc0d1de2c7604852a487.r2.cloudflarestorage.com/org-3dvzUYC7UREJp4GZor7nZ/key-AjnzucfYwIPMjbANBJgb6/req-VAJgAQ7W8rtIDHHnUn1NB.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=cc8699d8ce09388bb5461b1e1bf500e8%2F20240921%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240921T135929Z&X-Amz-Expires=3600&X-Amz-Signature=16924c253f806d44541256123c248ffb665a09eb4b86ec7e2741bbf3990dc9a5&X-Amz-SignedHeaders=host"}
 
-            var imageUrl = new Uri(JsonSerializer.Deserialize<ApiResponse.Success>(response.Content)!.url);
+
+            Uri imageUrl = null;
+            if (response_format == "url")
+            {
+                imageUrlTextBox.Text = JsonSerializer.Deserialize<ApiResponse.Success>(response.Content)!.url;
+                imageUrl = new Uri(imageUrlTextBox.Text);
+            }
             BitmapImage image = new BitmapImage();
             image.BeginInit();
+            if (response_format == "url")
+            {
+                image.UriSource = imageUrl;
+            }
+            else
+            {
+                byte[] binaryData = Convert.FromBase64String(JsonSerializer.Deserialize<ApiResponse.Success>(response.Content)!.image);
+                image.StreamSource = new MemoryStream(binaryData);
+            }
             image.UriSource = imageUrl;
             image.EndInit();
             mainImage.Source = image;
+        }
+
+        private void responsePreview_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

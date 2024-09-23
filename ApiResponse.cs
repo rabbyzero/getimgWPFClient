@@ -12,7 +12,8 @@ namespace getimgWPFClient
         {
             public float cost {  get; set; }
             public int seed { get; set; }
-            public String url { get; set; }
+            public String? url { get; set; }
+            public String? image { get; set; }
         }
         ApiResponse() { }
     }

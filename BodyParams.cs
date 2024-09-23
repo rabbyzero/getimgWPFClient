@@ -14,13 +14,13 @@ namespace getimgWPFClient
         //String guidance;
         //String scheduler;
 
-        [JsonPropertyName("prompt")] public String Prompt { set; get; } = "";
-        [JsonPropertyName("width")] public int Width { get; set; } = 1024;
-        [JsonPropertyName("height")] public int Height { get; set; } = 1024;
-        [JsonPropertyName("steps")] public int Steps { get; set; } = 1;
-        [JsonPropertyName("seed")] public int Seed { get; set; } = 1;
-        [JsonPropertyName("output_format")] public String Output_format { get; set; } = "jpeg";
-        [JsonPropertyName("respone_format")] public String Response_format { get; set; } = "b64";
+        [JsonPropertyName("prompt")] public String prompt { set; get; } = "";
+        [JsonPropertyName("width")] public int width { get; set; } = 1024;
+        [JsonPropertyName("height")] public int height { get; set; } = 1024;
+        [JsonPropertyName("steps")] public int steps { get; set; } = 1;
+        [JsonPropertyName("seed")] public int seed { get; set; } = 1;
+        [JsonPropertyName("output_format")] public String output_format { get; set; } = "jpeg";
+        [JsonPropertyName("respone_format")] public String response_format { get; set; } = "b64";
 
         public BodyParams() { }
         public RestRequest BuildJsonBody(RestRequest r)
@@ -32,13 +32,13 @@ namespace getimgWPFClient
         public RestRequest BuildJsonBody(RestRequest r, TextToImage<FLUXSchnell> _)
         {
             r.AddJsonBody(new {
-                prompt  =   this.Prompt,
-                width   =   this.Width,
-                height  =   this.Height,
-                steps   =   this.Steps,
-                seed    =   this.Seed,
-                output_format   =   this.Output_format,
-                response_format  =   this.Response_format
+                prompt  =   this.prompt,
+                width   =   this.width,
+                height  =   this.height,
+                steps   =   this.steps,
+                seed    =   this.seed,
+                output_format   =   this.output_format,
+                response_format  =   this.response_format
             });
             return r;
         }
