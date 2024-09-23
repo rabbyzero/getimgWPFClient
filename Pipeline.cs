@@ -7,9 +7,9 @@ using RestSharp;
 
 namespace getimgWPFClient
 {
-    internal abstract class ModelMethod
+    internal abstract class Pipeline
     {
-        public String methodLocation; // combined with client url and modelLocation to identify the method
+        public String pipelineLocation; // combined with client url and modelLocation to identify the method
         public Method httpMethod;
     }
 }

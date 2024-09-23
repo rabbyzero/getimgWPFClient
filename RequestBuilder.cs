@@ -8,7 +8,7 @@ using RestSharp;
 
 namespace getimgWPFClient
 {
-    internal class RequestBuilder<MODEL,METHOD> where MODEL : ImageModel where METHOD : ModelMethod
+    internal class RequestBuilder<MODEL,METHOD> where MODEL : ImageModel where METHOD : Pipeline
     {
         public RestRequest request;
 
@@ -22,7 +22,7 @@ namespace getimgWPFClient
 
         public RequestBuilder(MODEL model,METHOD method,String key, BodyParams<FLUXSchnell, TextToImage<FLUXSchnell>> parameters)
         {
-            request = new RestRequest(model.ModelLocation + method.methodLocation, method.httpMethod)
+            request = new RestRequest(model.ModelLocation + method.pipelineLocation, method.httpMethod)
                 .AddHeader("accept", "application/json")
                 .AddHeader("authorization", "Bearer " + key);
                 

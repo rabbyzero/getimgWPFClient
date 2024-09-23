@@ -55,7 +55,7 @@ namespace getimgWPFClient
 
                 prompt = promptInputBox.Text
             };
-            RequestBuilder<ImageModel, ModelMethod> request = new(model, method, keyInputBox.Text, parameters);
+            RequestBuilder<ImageModel, Pipeline> request = new(model, method, keyInputBox.Text, parameters);
             parameters.BuildJsonBody(request.request,method);
             
             var response = restClient.client.Post(request.request);
@@ -63,7 +63,7 @@ namespace getimgWPFClient
             responsePreview.Text = response.Content;
 
 
-            Uri imageUrl = null;
+            Uri? imageUrl = null;
             if (response_format == "url")
             {
                 imageUrlTextBox.Text = JsonSerializer.Deserialize<ApiResponse.Success>(response.Content)!.url;

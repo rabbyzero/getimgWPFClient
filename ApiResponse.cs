@@ -15,6 +15,6 @@ namespace getimgWPFClient
             public String? url { get; set; }
             public String? image { get; set; }
         }
-        ApiResponse() { }
+        public ApiResponse() { }
     }
 }

@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace getimgWPFClient
 {
-    internal class TextToImage<MODEL> : ModelMethod where MODEL : ImageModel
+    internal class TextToImage<MODEL> : Pipeline where MODEL : ImageModel
     {
         TextToImage()
         {
-            methodLocation = "text-to-image";
+            pipelineLocation = "text-to-image";
             httpMethod = Method.Post;
         }
 
