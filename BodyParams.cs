@@ -40,30 +40,13 @@ namespace getimgWPFClient
 
         public RestRequest BuildJsonBody(RestRequest r, TextToImage<FLUXSchnell> _)
         {
-            r.AddJsonBody(new {
-                prompt  =   this.prompt,
-                width   =   this.width,
-                height  =   this.height,
-                steps   =   this.steps,
-                seed    =   this.seed,
-                output_format   =   this.output_format,
-                response_format  =   this.response_format
-            });
+            r.AddJsonBody(this);
             return r;
         }
 
         public RestRequest BuildJsonBody(RestRequest r, TextToImage<StabelDiffusionXL> _)
         {
-            r.AddJsonBody(new
-            {
-                this.prompt,
-                this.width,
-                this.height,
-                this.steps,
-                this.seed,
-                this.output_format,
-                this.response_format
-            });
+            r.AddJsonBody(this);
             return r;
         }
     }

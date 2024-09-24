@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using System.Text.Json.Serialization;
 
 
 namespace getimgWPFClient
@@ -56,8 +57,12 @@ namespace getimgWPFClient
                 prompt = promptInputBox.Text
             };
             RequestBuilder<ImageModel, Pipeline> request = new(model, method, keyInputBox.Text, parameters);
-            parameters.BuildJsonBody(request.request,method);
-            
+            responsePreview.Text = JsonSerializer.Serialize(parameters, new JsonSerializerOptions { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull });
+            //return;
+            parameters.BuildJsonBody(request.request);
+
+            responsePreview.Text += "\n----\n"+ request.request.Parameters.FirstOrDefault(p => p.Type == ParameterType.RequestBody)?.Value;
+            return;
             var response = restClient.client.Post(request.request);
             
             responsePreview.Text = response.Content;

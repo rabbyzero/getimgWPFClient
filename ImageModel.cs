@@ -10,5 +10,6 @@ namespace getimgWPFClient
     {
         protected String modelLocation; // combined with client URL to identify the model
         public String ModelLocation { get => modelLocation; }
+        public String family { get; set; }
     }
 }

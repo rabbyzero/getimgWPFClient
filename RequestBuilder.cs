@@ -20,7 +20,7 @@ namespace getimgWPFClient
                 .AddJsonBody("",false);
         }
 
-        public RequestBuilder(MODEL model,METHOD method,String key, BodyParams<FLUXSchnell, TextToImage<FLUXSchnell>> parameters)
+        public RequestBuilder(MODEL model,METHOD method,String key, BodyParams<FLUXSchnell, TextToImage<FLUXSchnell>> _)
         {
             request = new RestRequest(model.ModelLocation + method.pipelineLocation, method.httpMethod)
                 .AddHeader("accept", "application/json")

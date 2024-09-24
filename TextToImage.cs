@@ -16,9 +16,11 @@ namespace getimgWPFClient
             httpMethod = Method.Post;
         }
 
-        public TextToImage(FLUXSchnell imageModel):this()
+        public TextToImage(FLUXSchnell _):this()
         {
         }
-
+        public TextToImage(StabelDiffusionXL _) : this()
+        {
+        }
     }
 }
