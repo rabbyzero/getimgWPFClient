@@ -1,11 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 using RestSharp;
 
 namespace getimgWPFClient
 {
     internal class BodyParams<MODEL, MODELMETHOD>
-        where MODEL : ImageModel
-        where MODELMETHOD : Pipeline
+            where MODEL : ImageModel
+            where MODELMETHOD : Pipeline
     {
         //String model;
         //String negative_prompt;
@@ -29,25 +30,23 @@ namespace getimgWPFClient
         public String? guidance { get; set; }
         public String? scheduler { get; set; }
 
-
-
+        static JsonSerializerOptions jsOptions = new JsonSerializerOptions() { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
+        
         public BodyParams() { }
         public RestRequest BuildJsonBody(RestRequest r)
         {
-            r.AddJsonBody(this);
+            r.AddJsonBody(JsonSerializer.Serialize(this,jsOptions));
             return r;
         }
 
         public RestRequest BuildJsonBody(RestRequest r, TextToImage<FLUXSchnell> _)
         {
-            r.AddJsonBody(this);
-            return r;
+            return this.BuildJsonBody(r);
         }
 
         public RestRequest BuildJsonBody(RestRequest r, TextToImage<StabelDiffusionXL> _)
         {
-            r.AddJsonBody(this);
-            return r;
+            return this.BuildJsonBody(r);
         }
     }
 }
